@@ -26,12 +26,12 @@ do{
 /* SIMULADOR INTERACTIVO */
 /* Algoritmo: Es un conjunto prescrito de instrucciones o reglas bien definidas, ordenadas y finitas que permite llevar a cabo una actividad mediante pasos sucesivos que no generen dudas a quien deba hacer dicha actividad */
 
-class Producto{
+/* class Producto{
     constructor(nombre, precio, categoria){
         this.nombre = nombre.toUpperCase();
         this.precio = parseInt(precio);
         this.categoria = categoria;
-        this.vendido = false/* variable booleana que se pone en true una vez que se vende, arrancando en false */
+        this.vendido = false     variable booleana que se pone en true una vez que se vende, arrancando en false
     }
 
     sumarIVA(){
@@ -49,4 +49,18 @@ producto1.sumarIVA()
 console.log("El precio con IVA  incluido es:" + producto1.precio);
 
 producto1.vender();
-console.log(producto1.vendido);
+console.log(producto1.vendido); */
+
+/* arrays COMPLEMENTARIO */
+
+const invitados = ["Jorge", "Luis", "Samuel", "Davo", "Nicolas"]
+
+invitados.push("Emilio")
+
+if(invitados.includes("Jorge")){
+    quitar = invitados.indexOf("Jorge");
+    invitados.slice(quitar, 1)
+} 
+
+
+
