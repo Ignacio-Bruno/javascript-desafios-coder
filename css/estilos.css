@@ -1,0 +1,112 @@
+.h1-class{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    color: white;
+}
+#caja{
+    background-color: rgba(58, 58, 210, 0.192);
+    margin: 2rem;
+    padding: 2rem;
+    color: rgb(212, 245, 3);
+    font-size: 30px;
+    text-align: center;
+    border: 2px solid black;
+    border-style: dotted;
+}
+
+#button{
+    background-color: rgb(36, 36, 34);
+    font-size: 20px;
+    width: 32rem;
+    padding: 0.5rem;
+    color: rgb(216, 235, 53);
+}
+
+.enter{
+    color: rgb(182, 130, 231);
+    font-size: larger;
+}
+.card-style{
+    padding: 2rem;
+    margin:  3rem;
+    width: 20rem;
+    height: 28rem;
+    border-radius: 20px;
+    background-color: rgba(69, 222, 182, 0.155);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+}
+
+.card-img{
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    height:  50%;
+}
+
+.card-name{
+    padding: 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.065);
+    border: 2px solid black;
+}
+
+.card-precio{
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: rgb(165, 255, 127);
+    border: 3px solid black;
+    border-radius: 100px;
+}
+
+.btn-class{
+    background-color: yellow;
+    color: black;
+    font-size: 1rem;
+}
+
+.modal{
+    width: 20rem;
+    height: 15rem;
+    border: groove black 1px;
+    background-color: rgba(69, 222, 181, 0.088);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+
+#close-modal{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: crimson;
+    color: wheat;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    left:  1rem;
+    bottom: 1rem;
+
+}
+
+body{ 
+    background: linear-gradient(141deg, rgba(77,8,155,1) 7%, rgba(152,11,148,1) 19%, rgba(105,29,152,1) 46%, rgba(52,81,152,1) 100%);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
