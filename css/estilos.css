@@ -16,7 +16,7 @@
     border-style: dotted;
 }
 
-#button{
+.button{
     background-color: rgb(36, 36, 34);
     font-size: 20px;
     width: 32rem;
