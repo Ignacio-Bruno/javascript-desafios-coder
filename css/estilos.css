@@ -1,10 +1,23 @@
 .h1-class{
+    background: rgb(77,8,155);
+    background: linear-gradient(141deg, rgba(77,8,155,0.7178221630449055) 7%, rgba(152,11,148,0.8018557764902836) 19%, rgba(105,29,152,0.7318277652858018) 46%, rgba(52,81,152,0.5833683815323004) 100%);
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center ;
     color: white;
 }
+
+.h1-class:hover {
+    color: yellow;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #caja{
     background-color: rgba(58, 58, 210, 0.192);
     margin: 2rem;
@@ -28,44 +41,10 @@
     color: rgb(182, 130, 231);
     font-size: larger;
 }
-.card-style{
-    padding: 2rem;
-    margin:  3rem;
-    width: 20rem;
-    height: 28rem;
-    border-radius: 20px;
-    background-color: rgba(69, 222, 182, 0.155);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid black;
-}
-
-.card-img{
-    width: 100%;
-    border-radius: 15px 15px 0 0;
-    height:  50%;
-}
-
-.card-name{
-    padding: 0.5rem;
-    color: white;
-    font-size: 1.5rem;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.065);
-    border: 2px solid black;
-}
-
-.card-precio{
-    padding: 0.5rem;
-    font-size: 1rem;
-    background-color: rgb(165, 255, 127);
-    border: 3px solid black;
-    border-radius: 100px;
-}
 
 .btn-class{
+    margin-top: 1rem;
+    width: 9rem;
     background-color: yellow;
     color: black;
     font-size: 1rem;
@@ -101,9 +80,7 @@
 
 }
 
-body{ 
-    background: linear-gradient(141deg, rgba(77,8,155,1) 7%, rgba(152,11,148,1) 19%, rgba(105,29,152,1) 46%, rgba(52,81,152,1) 100%);
-}
+body{  background-color: violet;}
 
 main{
     display: flex;

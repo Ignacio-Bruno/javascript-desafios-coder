@@ -1,16 +1,3 @@
-const TiendaStock = [
-    {id:"01",producto:"Camiseta god gaming",precio: 15, imagen: '../recursos/godelite-remera.webp'},
-    {id:"02",producto:"Camiseta alpha squad",precio:15, imagen: '../recursos/alpha-remera.webp'},
-    {id:"03",producto:"Camiseta ghk",precio:17, imagen: '../recursos/ghk-remera.png'},
-    {id:"04",producto:"Camiseta vanquish",precio:20, imagen: '../recursos/ghk-remera.png'},
-    {id:"05",producto:"teclado redDragon vy007",precio:40, imagen: '../recursos/teclado2-imagen-tienda.png'},
-    {id:"06",producto:"Camiseta bull gaming",precio:15, imagen: '../recursos/alpha-remera.webp'},
-    {id:"07",producto:"Auriculares x gaming predator",precio:48, imagen: '../recursos/auriculares.png'},
-    {id:"08",producto:"Teclado logitech rw07",precio:70, imagen: '../recursos/teclado2-imagen-tienda.png'},
-    {id:"09",producto:"Camiseta Witness the journey",precio:12, imagen: '../recursos/ghk-remera.png'},
-]
-
-/* ENTER para acción */
 let btn = document.querySelector('button');
 let resultado = document.querySelector('p');
 
@@ -19,103 +6,148 @@ document.body.addEventListener('keypress',(e) =>{
     btn.style.display = 'none';
 });
 
-const containerCards = document.getElementById("container-cards")
+        document.addEventListener('DOMContentLoaded', () => {
+            const TiendaStock = [
+                {id:01,producto:"Camiseta god gaming",precio: 15, imagen: '../recursos/godelite-remera.webp'},
+                {id:02,producto:"Camiseta alpha squad",precio:15, imagen: '../recursos/alpha-remera.webp'},
+                {id:03,producto:"Camiseta ghk",precio:17, imagen: '../recursos/ghk-remera.png'},
+                {id:04,producto:"Camiseta vanquish",precio:20, imagen: '../recursos/ghk-remera.png'},
+                {id:05,producto:"teclado redDragon vy007",precio:40, imagen: '../recursos/teclado2-imagen-tienda.png'},
+                {id:06,producto:"Camiseta bull gaming",precio:15, imagen: '../recursos/alpha-remera.webp'},
+                {id:07,producto:"Auriculares x gaming predator",precio:48, imagen: '../recursos/auriculares.png'},
+                {id:08,producto:"Teclado logitech rw07",precio:70, imagen: '../recursos/teclado2-imagen-tienda.png'},
+                {id:09,producto:"Camiseta Witness the journey",precio:12, imagen: '../recursos/ghk-remera.png'},
+            ];
 
-const selectProductos= document.getElementById("select-productos")
+            let carrito = [];
+            const moneda = '$';
+            const DOMitems = document.querySelector('#items');
+            const DOMcarrito = document.querySelector('#carrito');
+            const DOMtotal = document.querySelector('#total');
+            const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+            const miLocalStorage = window.localStorage;
 
-const btncreate = document.getElementById('btn-create')
+            function renderizarProductos() {
+                TiendaStock.forEach((info) => {
+                    const Nodo = document.createElement('div');
+                    Nodo.classList.add('card', 'col-sm-4');
+                  
+                    const CardBody = document.createElement('div');
+                    CardBody.classList.add('card-body');
+                   
+                    const Title = document.createElement('h5');
+                    Title.classList.add('card-title');
+                    Title.textContent = info.producto;
+                  
+                    const Imagen = document.createElement('img');
+                    Imagen.classList.add('img-fluid');
+                    Imagen.setAttribute('src', info.imagen);
+                   
+                    const Precio = document.createElement('p');
+                    Precio.classList.add('card-text');
+                    Precio.textContent = `${info.precio}${moneda}`;
+                  
+                    const NodoBoton = document.createElement('button');
+                    NodoBoton.classList.add('btn', 'btn-primary');
+                    NodoBoton.textContent = '+';
+                    NodoBoton.setAttribute('marcador', info.id);
+                    NodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                  
+                    CardBody.appendChild(Imagen);
+                    CardBody.appendChild(Title);
+                    CardBody.appendChild(Precio);
+                    CardBody.appendChild(NodoBoton);
+                    Nodo.appendChild(CardBody);
+                    DOMitems.appendChild(Nodo);
+                });
+            }
 
-let imgselect= '';
-let idProducto = 0
+            function anyadirProductoAlCarrito(evento) {
+                
+                carrito.push(evento.target.getAttribute('marcador'))
+                
+                renderizarCarrito();
+                
+                guardarCarritoEnLocalStorage();
+            }
 
-/* agregar un elemento */
-const modal = document.querySelector('.modal')
-const closemodal = document.getElementById('close-modal')
-const nuevoproducto = document.getElementById('nuevo-producto')
-const nuevoprecio = document.getElementById('nuevo-precio')
-const nuevaimagen = document.getElementById('nueva-imagen')
-const botonproducto = document.getElementById('btn-create')
+            
+            function renderizarCarrito() {
+                
+                DOMcarrito.textContent = '';
+                
+                const carritoSinDuplicados = [...new Set(carrito)];
+                
+                carritoSinDuplicados.forEach((item) => {
+                    
+                    const miItem = TiendaStock.filter((itemBaseDatos) => {
+                        
+                        return itemBaseDatos.id === parseInt(item);
+                    });
+                    
+                    const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                    
+                        return itemId === item ? total += 1 : total;
+                    }, 0);
 
-window.addEventListener("load", listSelect);
-selectProductos.addEventListener('change', renderCards);
-btncreate.addEventListener('click', showmodal);
-botonproducto.addEventListener('click', createnewproduct);
-nuevaimagen.addEventListener('change', importImagen);
-closemodal.addEventListener('click',()=> modal.style.display = 'none');
+                    const Nodo = document.createElement('li');
+                    Nodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                    Nodo.textContent = `${numeroUnidadesItem} x ${miItem[0].producto} - ${miItem[0].precio}${moneda}`;
 
-function importImagen(event) {
-    const imagenElegida = event.target.files[0];
-    const objetoURL = URL.createObjectURL(imagenElegida)/* sirve para obtener la url de la imagen(esa es la idea) */
-    imagenElegida = objetoURL;
-}
+                    const miBoton = document.createElement('button');
+                    miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                    miBoton.textContent = 'X';
+                    miBoton.style.marginLeft = '1rem';
+                    miBoton.dataset.item = item;
+                    miBoton.addEventListener('click', borrarItemCarrito);
+                    Nodo.appendChild(miBoton);
+                    DOMcarrito.appendChild(Nodo);
+                });
+                DOMtotal.textContent = calcularTotal();
+            }
 
-function createnewproduct(){
-    idProducto++;
-    const tituloproducto = nuevoproducto.value;
-    const precioproducto = nuevoprecio.value;
-    const id = idProducto;
-    
-    const nuevoprod = { id:id ,producto: tituloproducto,precio: precioproducto, imagen: imagenElegida};
+            function borrarItemCarrito(evento) {
+                const id = evento.target.dataset.item;
 
-    TiendaStock.push(nuevoprod);/* se agrega el nuevo elemento/producto al array */
-    listSelect();
-    modal.style.display = 'none' 
-}
+                carrito = carrito.filter((carritoId) => {
+                    return carritoId !== id;
+                });
+                renderizarCarrito();
+                guardarCarritoEnLocalStorage();
+            }
 
+            function calcularTotal() {
 
-function showmodal(){
-    modal.style.display = 'flex'
-}
+                return carrito.reduce((total, item) => {
 
-/* validacion */
-function renderCards() {
-    TiendaStock.map ( elementos => {elementos.producto === selectProductos.value ? cardscreate(elementos) : null })
-}
+                    const miItem = TiendaStock.filter((itemBaseDatos) => {
+                        return itemBaseDatos.id === parseInt(item);
+                    });
 
-/* lista los elementos en stock */
-function listSelect() {
-    selectProductos.innerHTML ='' /* limpia el select */
-    const anyoption = document.createElement('option')
-    TiendaStock.map( elementos => {
-        const option = document.createElement("option");
-        option.value = elementos.producto;
-        option.textContent = elementos.producto;
-        selectProductos.appendChild(option);
+                    return total + miItem[0].precio;
+                }, 0).toFixed(2);
+            }
 
-    })
-}
-/* armado de las card en js */
-function cardscreate(elementos) {
-    const { id, producto, precio, imagen} = elementos;
+            function vaciarCarrito() {
+                carrito = [];
+                renderizarCarrito();
+                localStorage.clear();
 
-    const card = document.createElement('div');
-    card.classList.add('card-style');
+            }
 
-    const imgCard = document.createElement('img');
-    imgCard.setAttribute('src', imagen)
-    imgCard.setAttribute('alt', producto)
-    imgCard.classList.add('card-img');
+            function guardarCarritoEnLocalStorage () {
+                miLocalStorage.setItem('carrito', JSON.stringify(carrito));
+            }
 
-    const nameCard = document.createElement('p')
-    nameCard.textContent = producto;
-    nameCard.classList.add('card-name');
+            function cargarCarritoDeLocalStorage () {
+                if (miLocalStorage.getItem('carrito') !== null) {
+                    carrito = JSON.parse(miLocalStorage.getItem('carrito'));
+                }
+            }
 
-    const precioCard = document.createElement('p');
-    precioCard.classList.add('card-precio');
-    precioCard.textContent = precio+"$";
+            DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
-    const boton = document.createElement('button')
-    boton.setAttribute('id', id)
-    boton.classList.add('btn-class')
-    boton.textContent = "Añadir al carrito"
-
-    card.appendChild(imgCard);
-    card.appendChild(nameCard);
-    card.appendChild(precioCard);
-    card.appendChild(boton);
-
-    containerCards.appendChild(card)
-}
-
-
-/* DEFINICIÓN: El algoritmo en javascript se inserta en el DOM(En el html, desde js), y los algoritmos y sus metodos son utiles para aplicar los eventos. */
+            cargarCarritoDeLocalStorage();
+            renderizarProductos();
+            renderizarCarrito();
+        });

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="mb-3">
+        <nav class="navbar bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="carrito.html">
+                    <img src="/recursos/carros.png" alt="" width="50" height="44">
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div id="caja">
+        <p>¡PROMOCIONES!</p>
+        <button class="button">Presione la tecla <span class="enter">ENTER</span> para ver nuestras promos</button >
+    </div> 
+    <div class="container">
+        <div class="row">
+            <main id="items" class="col-sm-8 row"></main>
+
+            <aside class="col-sm-4">
+                <h2>Carrito</h2>
+
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+
+                <p class="text-right">Total: <span id="total"></span>&euro;</p>
+                <button id="boton-vaciar" class="btn btn-dark">Vaciar</button>
+            </aside>
+        </div>
+    </div>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>
