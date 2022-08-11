@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body> 
     <header class="mb-3">
         <nav class="navbar bg-dark">
             <div class="container">
@@ -19,14 +19,14 @@
     </header>
     <div id="caja">
         <p>¡PROMOCIONES!</p>
+        <div id="particles-js"></div>
         <button class="button">Presione la tecla <span class="enter">ENTER</span> para ver nuestras promos</button >
-    </div> 
-    <div class="container">
+    </div>
+    <div class="container" style=" margin-top: 2rem;">
         <div class="row">
-            <main id="items" class="col-sm-8 row"></main>
-
+            <main  id="items" class="col-sm-8 row"></main>
             <aside class="col-sm-4">
-                <h2>Carrito</h2>
+                <h2 >Carrito</h2>
 
                 <ul id="carrito" class="list-group"></ul>
                 <hr>
@@ -36,6 +36,10 @@
             </aside>
         </div>
     </div>
+    <script src="/js/particles.js"></script>
+    <script src="/js/app.js"></script>
     <script src="/js/scripts.js"></script>
 </body>
 </html>
+
+
