@@ -45,10 +45,11 @@
 
 .btn-class{
     margin-top: 1rem;
-    width: 9rem;
-    background-color: yellow;
-    color: black;
+    width: 5rem;
+    background-color: rgb(168, 93, 202);
+    color: rgb(255, 255, 255);
     font-size: 1rem;
+    border-color: black;
 }
 
 body{  background-color: violet;}
@@ -58,6 +59,28 @@ main{
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.pokemon{
+    height: 12rem;
+    width: 12rem;
+    margin: 0 auto;
+}
+
+#pok_cont {
+    background-color: #a663637c;
+    border-radius: 1rem;
+    display:flex;
+    flex-direction:column;
+    padding: 1rem;
+    height: max-content;
+    gap: 1rem;
+}
+
+.pok_p{
+    font-size: 2rem;
+    font-weight: 900;
+}
+
 
 #particles-js{
     position: fixed;

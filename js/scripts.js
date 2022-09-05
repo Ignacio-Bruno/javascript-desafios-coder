@@ -48,7 +48,7 @@ document.body.addEventListener('keypress',(e) =>{
                     Precio.textContent = `${info.precio}${moneda}`;
                   
                     const NodoBoton = document.createElement('button');
-                    NodoBoton.classList.add('btn', 'btn-primary');
+                    NodoBoton.classList.add('btn', 'btn-class');
                     NodoBoton.textContent = '+';
                     NodoBoton.setAttribute('marcador', info.id);
                     NodoBoton.addEventListener('click', anyadirProductoAlCarrito);
@@ -151,3 +151,54 @@ document.body.addEventListener('keypress',(e) =>{
             renderizarProductos();
             renderizarCarrito();
         });
+
+let url = "https://pokeapi.co/api/v2/pokemon/"
+
+let pokemons;
+
+let pok_cont = document.getElementById("pok_cont");
+
+let pok_btn = document.getElementById("pok_btn");
+
+let img_pok = document.createElement('img');
+
+img_pok.classList.add("pokemon")
+
+let pok_p = document.getElementById("pok_p")
+
+
+let number = Math.floor(Math.random() * (100 - 1 + 1) + 1)
+fetch(url + number, {
+    headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'*'
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+}).then((data) =>{
+    data.json().then(data =>{
+        pok_p.innerHTML = "Un " + data.name.charAt(0).toUpperCase() + data.name.slice(1) + " salvaje ha aparecido"
+        img_pok.setAttribute("src", data.sprites.front_default)
+        pok_cont.insertBefore(img_pok, pok_btn)
+    });
+})
+.catch(e => console.log(e));
+
+pok_btn.addEventListener("click", () => {
+    let number = Math.floor(Math.random() * (100 - 1 + 1) + 1)
+fetch(url + number, {
+    headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'*'
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+}).then((data) =>{
+    data.json().then(data =>{
+        pok_p.innerHTML = "Un " + data.name + " salvaje ha aparecido"
+        img_pok.setAttribute("src", data.sprites.front_default)
+        pok_cont.insertBefore(img_pok, pok_btn)
+    });
+})
+.catch(e => console.log(e));
+})
